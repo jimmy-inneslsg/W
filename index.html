@@ -22,8 +22,30 @@
       
 map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 map.addControl(new mapboxgl.ScaleControl());
-      
+
+    map.on('style.load', () => {
+        map.setFog({}); // Set the default atmosphere style
+    });
+
+    map.on('load', () => {
+        map.addSource('earthquakes', {
+            type: 'geojson',
+            // Use a URL for the value for the `data` property.
+            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
+        });
+
+        map.addLayer({
+            'id': 'outline',
+            'type': 'line',
+            'source': 'earthquakes',
+            'paint': {
+                'line-color': 'red',
+                'line-width': 5,
+                'line-opacity': 0.1
+            }
+        });
+    });
+
     </script>
 </html>
-
    
