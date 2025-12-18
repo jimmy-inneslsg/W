@@ -9,9 +9,40 @@
     zoom: 14
   });
 
+// Add navigation controls
   map.addControl(new mapboxgl.NavigationControl());
 
+  // Store pins in memory (session only)
+  const pins = [];
+
+  // Click to add a pin
+  map.on('click', (e) => {
+    const lngLat = e.lngLat;
+
+    // Save pin
+    pins.push({
+      lng: lngLat.lng,
+      lat: lngLat.lat
+    });
+
+    // Create marker
+    const marker = new mapboxgl.Marker({ color: 'red' })
+      .setLngLat(lngLat)
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }).setHTML(`
+          <strong>Pin added</strong><br>
+          Latitude: ${lngLat.lat.toFixed(5)}<br>
+          Longitude: ${lngLat.lng.toFixed(5)}
+        `)
+      )
+      .addTo(map);
+
+    marker.togglePopup();
+
+    console.log('Pins:', pins);
+  });
+
   map.on('load', () => {
-    console.log('Map loaded successfully');
+    console.log('Map loaded — click to add pins');
   });
 </script>
