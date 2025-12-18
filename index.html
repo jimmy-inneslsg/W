@@ -35,6 +35,16 @@ map.addControl(new mapboxgl.ScaleControl());
             'type': 'fill',
             'source': 'towns',
             'paint': {
+                'line-color': 'red',
+                'line-width': 5,
+                'line-opacity': 0.1
+            }
+        });
+              map.addLayer({
+            'id': 'towns_outline',
+            'type': 'line',
+            'source': 'towns',
+            'paint': {
                 'fill-color': 'black',
                 'fill-opacity': 0.8
             }
