@@ -1,18 +1,17 @@
-// 1. Set your Mapbox access token
-mapboxgl.accessToken = 'pk.eyJ1IjoiamltbXlyb2NoYS1pbm5lc2Fzc29jIiwiYSI6ImNtNmw4OG5ibjAwYzIycG9ncmRoaTNwdWcifQ._bVwo6TxNtDdZy92K8xx_g';
+<script>
+  // Mapbox token
+  mapboxgl.accessToken = 'pk.eyJ1IjoiamltbXlyb2NoYS1pbm5lc2Fzc29jIiwiYSI6ImNtNmw4OG5ibjAwYzIycG9ncmRoaTNwdWcifQ._bVwo6TxNtDdZy92K8xx_g';
 
-// 2. Create the map
-const map = new mapboxgl.Map({
-  container: 'map', // ID of the div in index.html
-  style: 'mapbox://styles/mapbox/streets-v12', // Map style
-  center: [-71.137, 42.452], // Winchester, MA (lng, lat)
-  zoom: 14
-});
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [-71.137, 42.452], // Winchester, MA
+    zoom: 14
+  });
 
-// 3. Add zoom & rotation controls
-map.addControl(new mapboxgl.NavigationControl());
+  map.addControl(new mapboxgl.NavigationControl());
 
-// 4. Optional: run code when the map finishes loading
-map.on('load', () => {
-  console.log('Map loaded successfully');
-});
+  map.on('load', () => {
+    console.log('Map loaded successfully');
+  });
+</script>
