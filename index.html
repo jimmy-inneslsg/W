@@ -35,9 +35,9 @@ map.addControl(new mapboxgl.ScaleControl());
             'type': 'fill',
             'source': 'towns',
             'paint': {
-                'line-color': 'red',
-                'line-width': 5,
-                'line-opacity': 0.1
+               'fill-color': 'black',
+                'fill-opacity': 0.8
+
             }
         });
               map.addLayer({
@@ -45,8 +45,9 @@ map.addControl(new mapboxgl.ScaleControl());
             'type': 'line',
             'source': 'towns',
             'paint': {
-                'fill-color': 'black',
-                'fill-opacity': 0.8
+                'line-color': 'red',
+                'line-width': 5,
+                'line-opacity': 0.1
             }
         });
     });
