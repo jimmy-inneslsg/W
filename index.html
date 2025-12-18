@@ -23,21 +23,17 @@
 map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 map.addControl(new mapboxgl.ScaleControl());
 
-    map.on('style.load', () => {
-        map.setFog({}); // Set the default atmosphere style
-    });
-
     map.on('load', () => {
-        map.addSource('earthquakes', {
+        map.addSource('winchester', {
             type: 'geojson',
             // Use a URL for the value for the `data` property.
-            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
+            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=TOWN_ID%3D344&f=geojson'
         });
 
         map.addLayer({
-            'id': 'outline',
+            'id': 'winchester_outline',
             'type': 'line',
-            'source': 'earthquakes',
+            'source': 'winchester',
             'paint': {
                 'line-color': 'red',
                 'line-width': 5,
@@ -46,6 +42,23 @@ map.addControl(new mapboxgl.ScaleControl());
         });
     });
 
+    map.on('load', () => {
+        map.addSource('towns', {
+            type: 'geojson',
+            // Use a URL for the value for the `data` property.
+            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=TOWN_ID%3C%3E344&f=geojson'
+        });
+
+        map.addLayer({
+            'id': 'towns_fill',
+            'type': 'fill',
+            'source': 'towns',
+            'paint': {
+                'fill-color': 'black',
+                'fill-opacity': 0.9
+            }
+        });
+    });
+
     </script>
 </html>
-   
