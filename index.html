@@ -24,25 +24,6 @@ map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 map.addControl(new mapboxgl.ScaleControl());
 
     map.on('load', () => {
-        map.addSource('winchester', {
-            type: 'geojson',
-            // Use a URL for the value for the `data` property.
-            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=TOWN_ID%3D344&f=geojson'
-        });
-
-        map.addLayer({
-            'id': 'winchester_outline',
-            'type': 'line',
-            'source': 'winchester',
-            'paint': {
-                'line-color': 'red',
-                'line-width': 5,
-                'line-opacity': 0.1
-            }
-        });
-    });
-
-    map.on('load', () => {
         map.addSource('towns', {
             type: 'geojson',
             // Use a URL for the value for the `data` property.
@@ -56,6 +37,25 @@ map.addControl(new mapboxgl.ScaleControl());
             'paint': {
                 'fill-color': 'black',
                 'fill-opacity': 0.8
+            }
+        });
+    });
+
+          map.on('load', () => {
+        map.addSource('winchester', {
+            type: 'geojson',
+            // Use a URL for the value for the `data` property.
+            data: 'https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Towns_survey_polym/FeatureServer/0/query?outFields=*&where=TOWN_ID%3D344&f=geojson'
+        });
+
+        map.addLayer({
+            'id': 'winchester_outline',
+            'type': 'line',
+            'source': 'winchester',
+            'paint': {
+                'line-color': 'red',
+                'line-width': 5,
+                'line-opacity': 0.2
             }
         });
     });
