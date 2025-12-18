@@ -19,6 +19,10 @@
         center: [-71.13690, 42.45230],
         zoom: 12
       })
+                  map.addSource('cities', {
+                type: 'geojson',
+                data: 'Winchester.geojson'
+            });
     </script>
 </html>
 
